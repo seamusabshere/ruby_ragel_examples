@@ -15,6 +15,7 @@
   *|;
 }%%
 =end
+
 # Scans a file for "STARTFOO[...]ENDFOO" blocks and outputs their contents.
 #
 # ENV['CHUNK_SIZE'] determines how much of the file to read in at a time, allowing you to control memory usage.
