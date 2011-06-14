@@ -1,0 +1,89 @@
+= Ruby and Ragel examples
+
+Say you have a file like
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a
+    tristique lectus. Vestibulum ante ipsum primis in faucibus orci luctus et
+    ultrices posuere cubilia Curae; Cum sociis natoque penatibus et magnis dis
+    parturient montes, nascetur ridiculus mus. Cras ultrices lectus sed justo
+    scelerisque sit amet euismod orci bibendum. Nunc dui nibh, vulputate eget
+    aliquet laoreet, iacSTARTFOOThere are lots of great ideas here.ENDFOOulis
+    a lorem. Integer interdum, dolor aliquam accumsan eleifend, nisl tortor
+    mollis ipsum, et semper arcu mi nec felis. Nunc scelerisque cursus dolor
+    eu tristique. Mauris porta pulvinar dolor. Integer egestas lacinia leo, ut
+    mollis sapien fermentum non. Maecenas ultricies nibh at justo ornare eu
+    ullamcorper justo aliquet. Cras id augue eget nunc auctor mattis vitae
+    quis massa. STARTFOOYou just have to look closelyENDFOOMauris suscipit
+    justo in erat scelerisque imperdiet. Nullam placerat aliquet fringilla.
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+    cubilia Curae; Ut blandit metus nec neque sollicitudin cursus. Praesent
+    pulvinar elementum lorem quis consectetur. Maecenas bibendum sagittis nibh
+    et vehicula. Praesent non eleifend turpis. Sed imperdiet diam eget turpis
+    vehicula lobortis. Integer tincidunt pulvinar sem, porttitor porttitor
+    metus convallis nec.
+
+You want to pull out
+
+    There are lots of great ideas here.
+    You just have to look closely
+
+You can use Ragel for that.
+
+== simple_scanner.rl vs. simple_tokenizer.rl
+
+Two examples are provided. <tt>simple_scanner.rl</tt> uses Ragel's scanner functionality (<tt>|**|</tt>) while <tt>simple_tokenizer.rl</tt> does not.
+
+== Benchmarking code styles
+
+Most of the tests are run against multiple code styles. You can see which one is the fastest (usually <tt>-F1</tt> because the tokenizer is so simple.)
+
+Code style <tt>-G2</tt> doesn't seem to work for my examples.
+
+== Running the tests
+
+Try the tests by running
+
+    ruby test_ragel.rb
+
+You should see something like
+
+    $ ruby test_ragel.rb 
+    Loaded suite test_ragel
+    Started
+    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=T0: 1.1331062316894531s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=T1: 1.127098798751831s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=F1: 0.9501042366027832s
+    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=T0: 0.5451369285583496s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=T1: 0.5483529567718506s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=F1: 0.437701940536499s
+    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=T0: 0.2462320327758789s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=T1: 0.25632190704345703s
+    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=F1: 0.1659259796142578s
+    .Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=T0: 1.3781278133392334s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=T1: 1.2648780345916748s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=F1: 1.1057589054107666s
+    .Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=T0: 0.751715898513794s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=T1: 0.6408441066741943s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=F1: 0.5257918834686279s
+    .Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=T0: 0.4163088798522949s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=T1: 0.31090211868286133s
+    Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=F1: 0.22796273231506348s
+    .
+    Finished in 13.083303 seconds.
+
+    7 tests, 24 assertions, 0 failures, 0 errors, 0 skips
+
+    Test run options: --seed 20727
+
+== Wishlist
+
+The filenames are not very good, but in a nutshell:
+
+* <tt>simple_tokenizer.rl</tt> - DONE (demonstrates <tt>()*</tt>)
+* <tt>simple_tokenizer2.rl</tt> - NOT DONE (demonstrates <tt>()**</tt> "Longest Match Kleene Star")
+* <tt>simple_scanner.rl</tt> - DONE (demonstrates <tt>|**|</tt>)
+* <tt>simple_scanner2.rl</tt> - NOT DONE (demonstrates <tt>|**|</tt> with an example that needs backtracking)
+
+== Copyright
+
+Copyright 2011 Seamus Abshere
