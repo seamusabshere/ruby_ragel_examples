@@ -5,12 +5,12 @@ REFERENCE = File.read('test/support/foo_tokens.txt').chomp
 
 class TestRagel < Test::Unit::TestCase
   def test_000_compile
-    out_path = __method__.to_s + '.out'
+    out_path = __method__.to_s + '.simple_tokenizer.out.txt'
     assert system("ragel -R lib/simple_tokenizer.rl")
     assert system("CHUNK_SIZE=100 ruby lib/simple_tokenizer.rb test/support/foo.txt > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp
 
-    out_path = __method__.to_s + '.out'
+    out_path = __method__.to_s + '.simple_scanner.out.txt'
     assert system("ragel -R lib/simple_scanner.rl")
     assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp
@@ -44,7 +44,7 @@ class TestRagel < Test::Unit::TestCase
   
   def assert_correct_for_chunk_size(rl_filename, chunk_size)
     test_name = /`(.*)'/.match(caller[0]).captures.first
-    out_path = test_name + '.out'
+    out_path = test_name + '.out.txt'
     %w{ T0 T1 F1 G2 }.each do |code_style|
       unless `ragel -#{code_style} -R lib/#{rl_filename}` =~ /Invalid/
         realtime = Benchmark.realtime {
