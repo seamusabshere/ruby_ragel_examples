@@ -5,6 +5,7 @@
 # line 16 "simple_scanner.rl"
 
 =end
+
 # Scans a file for "STARTFOO[...]ENDFOO" blocks and outputs their contents.
 #
 # ENV['CHUNK_SIZE'] determines how much of the file to read in at a time, allowing you to control memory usage.
@@ -16,7 +17,7 @@ class SimpleScanner
   def initialize(path)
     @path = path
     
-# line 20 "simple_scanner.rb"
+# line 21 "simple_scanner.rb"
 class << self
 	attr_accessor :_simple_scanner_trans_keys
 	private :_simple_scanner_trans_keys, :_simple_scanner_trans_keys=
@@ -129,7 +130,7 @@ end
 self.simple_scanner_en_main = 13;
 
 
-# line 29 "simple_scanner.rl"
+# line 30 "simple_scanner.rl"
     # % (this fixes syntax highlighting)
   end
 
@@ -143,7 +144,7 @@ self.simple_scanner_en_main = 13;
     eof = :ignored
 
     
-# line 147 "simple_scanner.rb"
+# line 148 "simple_scanner.rb"
 begin
 	p ||= 0
 	pe ||= data.length
@@ -153,7 +154,7 @@ begin
 	act = 0
 end
 
-# line 42 "simple_scanner.rl"
+# line 43 "simple_scanner.rl"
     # % (this fixes syntax highlighting)
 
     prefix = []
@@ -166,7 +167,7 @@ end
         p = 0
         pe = data.length
         
-# line 170 "simple_scanner.rb"
+# line 171 "simple_scanner.rb"
 begin
 	testEof = false
 	_slen, _trans, _keys, _inds, _acts, _nacts = nil
@@ -190,7 +191,7 @@ begin
 		begin
 ts = p
 		end
-# line 194 "simple_scanner.rb"
+# line 195 "simple_scanner.rb"
 	end
 	_keys = cs << 1
 	_inds = _simple_scanner_index_offsets[cs]
@@ -237,7 +238,7 @@ p = p - 1;		end
 		begin
  begin p = ((te))-1; end
 		end
-# line 241 "simple_scanner.rb"
+# line 242 "simple_scanner.rb"
 	end
 	end
 	end
@@ -247,7 +248,7 @@ p = p - 1;		end
 # line 1 "NONE"
 		begin
 ts = nil;		end
-# line 251 "simple_scanner.rb"
+# line 252 "simple_scanner.rb"
 	end
 
 	p += 1
@@ -272,7 +273,7 @@ ts = nil;		end
 end
 	end
 
-# line 54 "simple_scanner.rl"
+# line 55 "simple_scanner.rl"
         # % (this fixes syntax highlighting)
 
         if ts
