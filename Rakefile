@@ -8,8 +8,8 @@ end
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
-  # test.libs << 'lib' << 'test'
-  test.pattern = 'test_*.rb'
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/test_*.rb'
   test.verbose = true
 end
 

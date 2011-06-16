@@ -1,18 +1,18 @@
 require 'test/unit'
 require 'benchmark'
 
-REFERENCE = File.read('foo_tokens.txt').chomp
+REFERENCE = File.read('test/support/foo_tokens.txt').chomp
 
 class TestRagel < Test::Unit::TestCase
   def test_000_compile
     out_path = __method__.to_s + '.out'
-    assert system("ragel -R simple_tokenizer.rl")
-    assert system("CHUNK_SIZE=100 ruby simple_tokenizer.rb foo.txt > #{out_path}")
+    assert system("ragel -R lib/simple_tokenizer.rl")
+    assert system("CHUNK_SIZE=100 ruby lib/simple_tokenizer.rb test/support/foo.txt > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp
 
     out_path = __method__.to_s + '.out'
-    assert system("ragel -R simple_scanner.rl")
-    assert system("CHUNK_SIZE=100 ruby simple_scanner.rb foo.txt > #{out_path}")
+    assert system("ragel -R lib/simple_scanner.rl")
+    assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp
   end
   
@@ -42,16 +42,18 @@ class TestRagel < Test::Unit::TestCase
   
   private
   
-  def assert_correct_for_chunk_size(rl_path, chunk_size)
+  def assert_correct_for_chunk_size(rl_filename, chunk_size)
     test_name = /`(.*)'/.match(caller[0]).captures.first
     out_path = test_name + '.out'
     %w{ T0 T1 F1 G2 }.each do |code_style|
-      unless `ragel -#{code_style} -R #{rl_path}` =~ /Invalid/
+      unless `ragel -#{code_style} -R lib/#{rl_filename}` =~ /Invalid/
         realtime = Benchmark.realtime {
-          `CHUNK_SIZE=#{chunk_size} ruby #{rl_path.sub('.rl', '.rb')} foo.txt > #{out_path}`
+          `CHUNK_SIZE=#{chunk_size} ruby lib/#{rl_filename.sub('.rl', '.rb')} test/support/foo.txt > #{out_path}`
         }
         assert_equal REFERENCE, File.read(out_path).chomp
-        $stderr.puts "Benchmarking rl_path=#{rl_path} chunk_size=#{chunk_size} code_style=#{code_style}: #{realtime}s"
+        if ENV['BENCHMARK'] == 'true'
+          $stderr.puts "Benchmarking rl_filename=#{rl_filename} chunk_size=#{chunk_size} code_style=#{code_style}: #{realtime}s"
+        end
       end
     end
   end
