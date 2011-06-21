@@ -48,6 +48,7 @@ class SimpleTokenizer
 
     leftover = []
     my_ts = nil
+    my_te = nil
     
     File.open(path) do |f|
       while chunk = f.read(ENV['CHUNK_SIZE'].to_i)
