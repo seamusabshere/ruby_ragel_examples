@@ -31,7 +31,7 @@ class TestRagel < Test::Unit::TestCase
     'simple_scanner.rl' => 'foo.txt',
     'xml_tokenizer.rl' => 'foo.xml',
   }.each do |rl_filename, input_filename|
-    [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1_000_000 ].reverse.each do |chunk_size|
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 100, 1_000_000 ].reverse.each do |chunk_size|
       i += 1
       eval %{
         def test_#{'%0.3d' % i}_#{File.basename(rl_filename, '.rl')}_chunk_size_#{chunk_size}
