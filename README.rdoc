@@ -43,37 +43,42 @@ Code style <tt>-G2</tt> doesn't seem to work for my examples.
 
 Try the tests by running
 
-    ruby test_ragel.rb
+    rake
 
-You should see something like
+You can see benchmarks with different code styles with
 
-    $ ruby test_ragel.rb 
-    Loaded suite test_ragel
+    BENCHMARK=true rake
+
+Example output:
+
+    $ BENCHMARK=true rake
+    [...]
     Started
-    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=T0: 1.1331062316894531s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=T1: 1.127098798751831s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1 code_style=F1: 0.9501042366027832s
-    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=T0: 0.5451369285583496s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=T1: 0.5483529567718506s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=3 code_style=F1: 0.437701940536499s
-    .Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=T0: 0.2462320327758789s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=T1: 0.25632190704345703s
-    Benchmarking rl_path=simple_tokenizer.rl chunk_size=1000000 code_style=F1: 0.1659259796142578s
-    .Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=T0: 1.3781278133392334s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=T1: 1.2648780345916748s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=1 code_style=F1: 1.1057589054107666s
-    .Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=T0: 0.751715898513794s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=T1: 0.6408441066741943s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=3 code_style=F1: 0.5257918834686279s
-    .Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=T0: 0.4163088798522949s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=T1: 0.31090211868286133s
-    Benchmarking rl_path=simple_scanner.rl chunk_size=1000000 code_style=F1: 0.22796273231506348s
-    .
-    Finished in 13.083303 seconds.
-
-    7 tests, 24 assertions, 0 failures, 0 errors, 0 skips
-
-    Test run options: --seed 20727
+    ...Benchmarking rl_filename=simple_tokenizer.rl chunk_size=1000000 code_style=F1: 0.1708228588104248s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=100 code_style=F1: 2.376127004623413s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=31 code_style=F1: 7.216774940490723s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=30 code_style=F1: 7.53369402885437s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=29 code_style=F1: 7.948101997375488s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=28 code_style=F1: 8.361572742462158s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=27 code_style=F1: 8.208178997039795s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=26 code_style=F1: 8.584808826446533s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=25 code_style=F1: 9.248464345932007s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=24 code_style=F1: 10.399993181228638s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=23 code_style=F1: 10.160030841827393s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=22 code_style=F1: 12.187470197677612s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=21 code_style=F1: 14.167765140533447s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=20 code_style=F1: 13.967772006988525s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=19 code_style=F1: 13.83250904083252s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=18 code_style=F1: 13.831825256347656s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=17 code_style=F1: 14.376168966293335s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=16 code_style=F1: 15.051374912261963s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=15 code_style=F1: 15.7113778591156s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=14 code_style=F1: 17.260392904281616s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=13 code_style=F1: 19.219007968902588s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=12 code_style=F1: 22.87133479118347s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=11 code_style=F1: 23.93314814567566s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=10 code_style=F1: 25.299525022506714s
+    [...]
 
 == Wishlist
 
@@ -83,6 +88,7 @@ The filenames are not very good, but in a nutshell:
 * <tt>simple_tokenizer2.rl</tt> - NOT DONE (demonstrates <tt>()**</tt> "Longest Match Kleene Star")
 * <tt>simple_scanner.rl</tt> - DONE (demonstrates <tt>|**|</tt>)
 * <tt>simple_scanner2.rl</tt> - NOT DONE (demonstrates <tt>|**|</tt> with an example that needs backtracking)
+* <tt>xml_tokenizer.rl</tt> - DONE (like <tt>simple_tokenizer.rl</tt>, but <tt>&lt;Foo&gt;</tt> instead of <tt>STARTFOO</tt>... maybe unnecessary)
 
 == Copyright
 
