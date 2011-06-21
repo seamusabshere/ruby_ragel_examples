@@ -11,12 +11,12 @@ class TestRagel < Test::Unit::TestCase
     assert_equal REFERENCE, File.read(out_path).chomp
   end
   
-  # def test_001_simple_scanner
-  #   out_path = __method__.to_s + '.out.txt'
-  #   assert system("ragel -R lib/simple_scanner.rl")
-  #   assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
-  #   assert_equal REFERENCE, File.read(out_path).chomp
-  # end
+  def test_001_simple_scanner
+    out_path = __method__.to_s + '.out.txt'
+    assert system("ragel -R lib/simple_scanner.rl")
+    assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
+    assert_equal REFERENCE, File.read(out_path).chomp
+  end
   
   def test_002_xml_tokenizer
     out_path = __method__.to_s + '.out.txt'
@@ -28,7 +28,7 @@ class TestRagel < Test::Unit::TestCase
   i = 2
   {
     'simple_tokenizer.rl' => 'foo.txt',
-    # 'simple_scanner.rl' => 'foo.txt',
+    'simple_scanner.rl' => 'foo.txt',
     'xml_tokenizer.rl' => 'foo.xml',
   }.each do |rl_filename, input_filename|
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1_000_000 ].reverse.each do |chunk_size|

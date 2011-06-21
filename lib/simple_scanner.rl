@@ -3,18 +3,18 @@
   machine simple_scanner;
 
   action Emit {
-    emit data[ts...te].pack('c*')[8..-7]
-    prefixing = false
+    emit data[(ts+8)..(te-7)].pack('c*')
   }
 
   foo = 'STARTFOO' any+ :>> 'ENDFOO';
-
+  
   main := |*
     foo => Emit;
     any;
   *|;
 }%%
 =end
+
 
 # Scans a file for "STARTFOO[...]ENDFOO" blocks and outputs their contents.
 #
@@ -33,7 +33,7 @@ class SimpleScanner
   def emit(foo)
     $stdout.puts foo
   end
-
+  
   def perform
     # So that ragel doesn't try to get it from data.length
     pe = :ignored
@@ -42,28 +42,23 @@ class SimpleScanner
     %% write init;
     # % (this fixes syntax highlighting)
 
-    prefix = []
-    prefixing = false
+    leftover = []
     
     File.open(path) do |f|
       while chunk = f.read(ENV['CHUNK_SIZE'].to_i)
-        data = prefix + chunk.unpack('c*')
-
-        p = 0
+        data = leftover + chunk.unpack('c*')
+        p ||= 0
         pe = data.length
+
         %% write exec;
         # % (this fixes syntax highlighting)
-
         if ts
-          prefix = data[ts..pe]
-          te = te - ts if te
+          leftover = data[ts..pe]
+          p = p - ts
           ts = 0
-          prefixing = true
-        elsif prefixing
-          prefix = data
-          prefixing = false
         else
-          prefix = []
+          leftover = []
+          p = 0
         end
       end
     end
