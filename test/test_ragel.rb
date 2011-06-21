@@ -4,30 +4,34 @@ require 'benchmark'
 REFERENCE = File.read('test/support/foo_tokens.txt').chomp
 
 class TestRagel < Test::Unit::TestCase
-  def test_000_compile
-    out_path = __method__.to_s + '.simple_tokenizer.out.txt'
+  def test_000_simple_tokenizer
+    out_path = __method__.to_s + '.out.txt'
     assert system("ragel -R lib/simple_tokenizer.rl")
     assert system("CHUNK_SIZE=100 ruby lib/simple_tokenizer.rb test/support/foo.txt > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp
-
-    out_path = __method__.to_s + '.simple_scanner.out.txt'
-    assert system("ragel -R lib/simple_scanner.rl")
-    assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
-    assert_equal REFERENCE, File.read(out_path).chomp
-    
-    out_path = __method__.to_s + '.xml_tokenizer.out.txt'
+  end
+  
+  # def test_001_simple_scanner
+  #   out_path = __method__.to_s + '.out.txt'
+  #   assert system("ragel -R lib/simple_scanner.rl")
+  #   assert system("CHUNK_SIZE=100 ruby lib/simple_scanner.rb test/support/foo.txt > #{out_path}")
+  #   assert_equal REFERENCE, File.read(out_path).chomp
+  # end
+  
+  def test_002_xml_tokenizer
+    out_path = __method__.to_s + '.out.txt'
     assert system("ragel -R lib/xml_tokenizer.rl")
     assert system("CHUNK_SIZE=100 ruby lib/xml_tokenizer.rb test/support/foo.xml > #{out_path}")
     assert_equal REFERENCE, File.read(out_path).chomp    
   end
   
-  i = 0
+  i = 2
   {
     'simple_tokenizer.rl' => 'foo.txt',
-    'simple_scanner.rl' => 'foo.txt',
+    # 'simple_scanner.rl' => 'foo.txt',
     'xml_tokenizer.rl' => 'foo.xml',
   }.each do |rl_filename, input_filename|
-    [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1_000_000 ].each do |chunk_size|
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1_000_000 ].reverse.each do |chunk_size|
       i += 1
       eval %{
         def test_#{'%0.3d' % i}_#{File.basename(rl_filename, '.rl')}_chunk_size_#{chunk_size}
@@ -42,10 +46,10 @@ class TestRagel < Test::Unit::TestCase
   def assert_correct_for_chunk_size(rl_filename, input_filename, chunk_size)
     test_name = /`(.*)'/.match(caller[0]).captures.first
     out_path = test_name + '.out.txt'
-    %w{ T1 F1 }.each do |code_style|
+    %w{ F1 }.each do |code_style|
       unless `ragel -#{code_style} -R lib/#{rl_filename}` =~ /Invalid/
         realtime = Benchmark.realtime {
-          `CHUNK_SIZE=#{chunk_size} ruby lib/#{rl_filename.sub('.rl', '.rb')} test/support/#{input_filename} > #{out_path}`
+          system "CHUNK_SIZE=#{chunk_size} ruby lib/#{rl_filename.sub('.rl', '.rb')} test/support/#{input_filename} > #{out_path}"
         }
         assert_equal REFERENCE, File.read(out_path).chomp
         File.unlink out_path

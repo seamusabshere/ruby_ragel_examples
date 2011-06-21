@@ -1,20 +1,22 @@
 =begin
 %%{
-  machine simple_tokenizer;
+  machine xml_tokenizer;
 
-  action Keep {
-    # Since we're not in ragel's scanner mode, we'll define our own "ts" variable
-    ts = p
+  action MyTs {
+    my_ts = p
+  }
+  action MyTe {
+    my_te = p
   }
   action Emit {
-    emit data[ts...p].pack('c*')
-    ts = nil
-    prefixing = false
+    emit data[my_ts...my_te].pack('c*')
+    my_ts = nil
+    my_te = nil
   }
 
-  foo = '<Foo>' any+ >Keep %Emit :>> '</Foo>';
+  foo = '<Foo>' any+ >MyTs :>> '</Foo>' >MyTe %Emit;
+  main := ( foo | any+ )*;
 
-  main := ( any+ | foo )*;
 }%%
 =end
 
@@ -23,7 +25,7 @@
 # ENV['CHUNK_SIZE'] determines how much of the file to read in at a time, allowing you to control memory usage.
 #
 # Does not use ragel's scanner functionality because no backtracking is needed.
-class SimpleTokenizer
+class XmlTokenizer
   attr_reader :path
 
   def initialize(path)
@@ -44,33 +46,28 @@ class SimpleTokenizer
     %% write init;
     # % (this fixes syntax highlighting)
 
-    prefix = []
-    ts = nil
-    prefixing = false
+    leftover = []
+    my_ts = nil
+    my_te = nil
     
     File.open(path) do |f|
       while chunk = f.read(ENV['CHUNK_SIZE'].to_i)
-        data = prefix + chunk.unpack('c*')
-
+        data = leftover + chunk.unpack('c*')
         p = 0
         pe = data.length
         %% write exec;
         # % (this fixes syntax highlighting)
-
-        if ts
-          prefix = data[ts..-1]
-          ts = 0
-          prefixing = true
-        elsif prefixing
-          prefix = data
-          prefixing = false
+        if my_ts
+          leftover = data[my_ts..-1]
+          my_te = my_te - my_ts if my_te
+          my_ts = 0
         else
-          prefix = []
+          leftover = []
         end
       end
     end
   end
 end
 
-s = SimpleTokenizer.new ARGV[0]
+s = XmlTokenizer.new ARGV[0]
 s.perform
