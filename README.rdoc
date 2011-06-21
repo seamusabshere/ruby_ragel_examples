@@ -78,7 +78,87 @@ Example output:
     .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=12 code_style=F1: 22.87133479118347s
     .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=11 code_style=F1: 23.93314814567566s
     .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=10 code_style=F1: 25.299525022506714s
-    [...]
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=9 code_style=F1: 27.885208129882812s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=8 code_style=F1: 31.59194016456604s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=7 code_style=F1: 38.41472101211548s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=6 code_style=F1: 45.09998416900635s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=5 code_style=F1: 52.02148509025574s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=4 code_style=F1: 64.59367489814758s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=3 code_style=F1: 86.717942237854s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=2 code_style=F1: 127.80321931838989s
+    .Benchmarking rl_filename=simple_tokenizer.rl chunk_size=1 code_style=F1: 263.08475399017334s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=1000000 code_style=F1: 0.24325203895568848s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=100 code_style=F1: 0.2598850727081299s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=31 code_style=F1: 0.3361678123474121s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=30 code_style=F1: 0.38150882720947266s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=29 code_style=F1: 0.38400912284851074s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=28 code_style=F1: 0.37177205085754395s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=27 code_style=F1: 0.3484499454498291s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=26 code_style=F1: 0.3678452968597412s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=25 code_style=F1: 0.3777611255645752s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=24 code_style=F1: 0.37799668312072754s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=23 code_style=F1: 0.3881850242614746s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=22 code_style=F1: 0.3997948169708252s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=21 code_style=F1: 0.37964701652526855s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=20 code_style=F1: 0.41425299644470215s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=19 code_style=F1: 0.4084770679473877s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=18 code_style=F1: 0.411909818649292s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=17 code_style=F1: 0.4202427864074707s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=16 code_style=F1: 0.40560388565063477s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=15 code_style=F1: 0.44637084007263184s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=14 code_style=F1: 0.473844051361084s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=13 code_style=F1: 0.4782578945159912s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=12 code_style=F1: 0.5120618343353271s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=11 code_style=F1: 0.5282502174377441s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=10 code_style=F1: 0.528923749923706s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=9 code_style=F1: 0.5536479949951172s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=8 code_style=F1: 0.6265339851379395s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=7 code_style=F1: 0.6716248989105225s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=6 code_style=F1: 0.6908829212188721s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=5 code_style=F1: 0.818579912185669s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=4 code_style=F1: 0.9440000057220459s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=3 code_style=F1: 1.1561110019683838s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=2 code_style=F1: 1.5758142471313477s
+    .Benchmarking rl_filename=simple_scanner.rl chunk_size=1 code_style=F1: 2.6399059295654297s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=1000000 code_style=F1: 0.18734478950500488s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=100 code_style=F1: 2.7623708248138428s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=31 code_style=F1: 8.500878095626831s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=30 code_style=F1: 8.775735139846802s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=29 code_style=F1: 9.006378889083862s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=28 code_style=F1: 9.380748987197876s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=27 code_style=F1: 9.430941104888916s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=26 code_style=F1: 9.831702947616577s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=25 code_style=F1: 10.298200130462646s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=24 code_style=F1: 10.699872016906738s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=23 code_style=F1: 11.192219257354736s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=22 code_style=F1: 11.843315124511719s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=21 code_style=F1: 12.719645977020264s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=20 code_style=F1: 12.985512256622314s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=19 code_style=F1: 13.535040140151978s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=18 code_style=F1: 14.50395131111145s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=17 code_style=F1: 15.044336795806885s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=16 code_style=F1: 15.898829936981201s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=15 code_style=F1: 17.144059896469116s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=14 code_style=F1: 18.294903993606567s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=13 code_style=F1: 20.031293153762817s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=12 code_style=F1: 21.469314098358154s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=11 code_style=F1: 23.639351844787598s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=10 code_style=F1: 25.875664949417114s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=9 code_style=F1: 28.37715792655945s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=8 code_style=F1: 31.748258113861084s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=7 code_style=F1: 35.7734580039978s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=6 code_style=F1: 42.2883780002594s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=5 code_style=F1: 52.21942615509033s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=4 code_style=F1: 72.1146559715271s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=3 code_style=F1: 88.86984777450562s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=2 code_style=F1: 131.512836933136s
+    .Benchmarking rl_filename=xml_tokenizer.rl chunk_size=1 code_style=F1: 260.85131072998047s
+    .
+    Finished in 2130.170261 seconds.
+
+    102 tests, 108 assertions, 0 failures, 0 errors, 0 skips
+
+    Test run options: --seed 60251
 
 == Wishlist
 
