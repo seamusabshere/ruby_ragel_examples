@@ -168,7 +168,6 @@ The filenames are not very good, but in a nutshell:
 * <tt>simple_tokenizer2.rl</tt> - NOT DONE (demonstrates <tt>()**</tt> "Longest Match Kleene Star")
 * <tt>simple_scanner.rl</tt> - DONE (demonstrates <tt>|**|</tt>)
 * <tt>simple_scanner2.rl</tt> - NOT DONE (demonstrates <tt>|**|</tt> with an example that needs backtracking)
-* <tt>xml_tokenizer.rl</tt> - DONE (like <tt>simple_tokenizer.rl</tt>, but <tt>&lt;Foo&gt;</tt> instead of <tt>STARTFOO</tt>... maybe unnecessary)
 
 == Copyright
 
